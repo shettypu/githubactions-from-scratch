@@ -18,7 +18,7 @@ jobs:
       - name: first step on windows job
         run: date
       - name: list files
-        run: ls -la
+        run: ls 
 
   dependent-job-1:
     name: A job that runs on mac after first two
