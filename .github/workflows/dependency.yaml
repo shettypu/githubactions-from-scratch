@@ -8,20 +8,24 @@ jobs:
     steps:
       - name: get the date
         run: date
-      - run: pwd
-    job-on-windows:
-      name: A job that runs on windows
-      runs-on: windows-latest
-      steps:
-        - name: first step on windows job
-          run: date
-        - run: ls -la
-    dependent-job-1:
-      needs: [jobs-on-ubuntu, job-on-windows]
-      runs-on: macos-latest
-      name: A job that runs on mac after first two
-      steps:
-        - run: pwd
-        - run: ls
-        
-      
+      - name: print working directory
+        run: pwd
+
+  job-on-windows:
+    name: A job that runs on windows
+    runs-on: windows-latest
+    steps:
+      - name: first step on windows job
+        run: date
+      - name: list files
+        run: ls -la
+
+  dependent-job-1:
+    name: A job that runs on mac after first two
+    needs: [jobs-on-ubuntu, job-on-windows]
+    runs-on: macos-latest
+    steps:
+      - name: print working directory
+        run: pwd
+      - name: list files
+        run: ls
